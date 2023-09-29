@@ -10,28 +10,25 @@
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="Header Files\include">
-      <UniqueIdentifier>{26338125-672f-4f2d-8cf0-9f069605d1b2}</UniqueIdentifier>
+      <UniqueIdentifier>{9df571e8-194a-4f7c-b24b-9c9476fe1621}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\src">
-      <UniqueIdentifier>{ce0972d5-bbfc-4548-8ef7-c43e0d77d258}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\include\polyclipping">
-      <UniqueIdentifier>{5b6252f0-6261-4c00-9a06-52d32cc04058}</UniqueIdentifier>
+    <Filter Include="Header Files\include\clipper">
+      <UniqueIdentifier>{e4bdd241-725c-46d1-93dd-26e735b9251d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\clipper.cpp">
-      <Filter>Source Files\src</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="polyclipping.def">
+    <None Include="clipper.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\polyclipping\clipper.hpp">
-      <Filter>Header Files\include\polyclipping</Filter>
+    <ClCompile Include="clipper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\clipper\clipper.hpp">
+      <Filter>Header Files\include\clipper</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

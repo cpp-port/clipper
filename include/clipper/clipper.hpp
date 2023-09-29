@@ -49,6 +49,21 @@
 //use_deprecated: Enables temporary support for the obsolete functions
 //#define use_deprecated  
 
+#ifdef WIN32
+#ifdef _output_type_static
+#define CLIPPER_CLASS_DECL
+#else
+#  pragma warning(disable : 4251) // warning C4251: class X needs to have dll-interface to be used by clients of class Y
+#ifdef _clipper_project
+#define CLIPPER_CLASS_DECL __declspec(dllexport)
+#else
+#define CLIPPER_CLASS_DECL __declspec(dllimport)
+#endif
+#endif
+#else
+#define CLIPPER_CLASS_DECL
+#endif
+
 #include <vector>
 #include <list>
 #include <set>
@@ -133,7 +148,7 @@ enum EndType {etClosedPolygon, etClosedLine, etOpenButt, etOpenSquare, etOpenRou
 class PolyNode;
 typedef std::vector< PolyNode* > PolyNodes;
 
-class PolyNode 
+class CLIPPER_CLASS_DECL PolyNode
 { 
 public:
     PolyNode();
@@ -157,7 +172,7 @@ private:
     friend class ClipperOffset; 
 };
 
-class PolyTree: public PolyNode
+class CLIPPER_CLASS_DECL PolyTree: public PolyNode
 { 
 public:
     ~PolyTree(){ Clear(); };
@@ -170,7 +185,7 @@ private:
     friend class Clipper; //to access AllNodes
 };
 
-bool Orientation(const Path &poly);
+CLIPPER_CLASS_DECL bool Orientation(const Path &poly);
 double Area(const Path &poly);
 int PointInPolygon(const IntPoint &pt, const Path &path);
 
@@ -217,7 +232,7 @@ typedef std::vector < IntersectNode* > IntersectList;
 //ClipperBase is the ancestor to the Clipper class. It should not be
 //instantiated directly. This class simply abstracts the conversion of sets of
 //polygon coordinates into edge objects that are stored in a LocalMinima list.
-class ClipperBase
+class CLIPPER_CLASS_DECL ClipperBase
 {
 public:
   ClipperBase();
@@ -260,7 +275,7 @@ protected:
 };
 //------------------------------------------------------------------------------
 
-class Clipper : public virtual ClipperBase
+class CLIPPER_CLASS_DECL Clipper : public virtual ClipperBase
 {
 public:
   Clipper(int initOptions = 0);
@@ -357,7 +372,7 @@ private:
 };
 //------------------------------------------------------------------------------
 
-class ClipperOffset 
+class CLIPPER_CLASS_DECL ClipperOffset
 {
 public:
   ClipperOffset(double miterLimit = 2.0, double roundPrecision = 0.25);
